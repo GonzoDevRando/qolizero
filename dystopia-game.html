@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Comic Neue', cursive;
-            background: #0a0a0a;
+            background: linear-gradient(180deg, #0a0a15 0%, #1a1a2e 50%, #16213e 100%);
             color: #fff;
             min-height: 100vh;
             padding: 20px;
@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* Comic book background pattern */
+        /* Dark noir background with money pattern */
         body::before {
             content: '';
             position: fixed;
@@ -33,24 +33,35 @@
             height: 100%;
             background: 
                 repeating-linear-gradient(
-                    0deg,
+                    45deg,
                     transparent,
-                    transparent 2px,
-                    rgba(255, 0, 0, 0.03) 2px,
-                    rgba(255, 0, 0, 0.03) 4px
+                    transparent 10px,
+                    rgba(255, 140, 0, 0.02) 10px,
+                    rgba(255, 140, 0, 0.02) 20px
                 ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0, 255, 255, 0.03) 2px,
-                    rgba(0, 255, 255, 0.03) 4px
-                ),
-                radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 100%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(138, 43, 226, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(30, 144, 255, 0.05) 0%, transparent 50%);
             pointer-events: none;
             z-index: 1;
+        }
+
+        /* Floating money animation */
+        @keyframes floatMoney {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        body::after {
+            content: '💵 💰 💵 💰 💵';
+            position: fixed;
+            font-size: 2em;
+            animation: floatMoney 15s infinite linear;
+            left: 10%;
+            z-index: 0;
+            opacity: 0.1;
         }
 
         .container {
@@ -66,41 +77,44 @@
             font-size: 4em;
             margin-bottom: 10px;
             letter-spacing: 3px;
-            color: #ff0040;
+            color: #ff8c00;
             text-shadow: 
-                3px 3px 0px #000,
-                4px 4px 0px #00ffff,
-                5px 5px 10px rgba(255, 0, 64, 0.5),
-                0 0 30px rgba(0, 255, 255, 0.3);
+                2px 2px 0px #000,
+                3px 3px 0px #8a2be2,
+                4px 4px 10px rgba(255, 140, 0, 0.8),
+                0 0 40px rgba(255, 140, 0, 0.5),
+                0 0 60px rgba(138, 43, 226, 0.3);
             transform: perspective(500px) rotateY(-5deg);
-            animation: glitch 3s infinite;
+            animation: sinisterGlow 3s infinite;
         }
 
-        @keyframes glitch {
+        @keyframes sinisterGlow {
             0%, 100% { 
                 text-shadow: 
-                    3px 3px 0px #000,
-                    4px 4px 0px #00ffff,
-                    5px 5px 10px rgba(255, 0, 64, 0.5),
-                    0 0 30px rgba(0, 255, 255, 0.3);
+                    2px 2px 0px #000,
+                    3px 3px 0px #8a2be2,
+                    4px 4px 10px rgba(255, 140, 0, 0.8),
+                    0 0 40px rgba(255, 140, 0, 0.5),
+                    0 0 60px rgba(138, 43, 226, 0.3);
             }
             50% { 
                 text-shadow: 
-                    -3px 3px 0px #000,
-                    -4px 4px 0px #ff00ff,
-                    -5px 5px 10px rgba(255, 0, 255, 0.5),
-                    0 0 30px rgba(255, 0, 255, 0.3);
+                    2px 2px 0px #000,
+                    3px 3px 0px #1e90ff,
+                    4px 4px 15px rgba(255, 140, 0, 1),
+                    0 0 50px rgba(255, 140, 0, 0.8),
+                    0 0 80px rgba(30, 144, 255, 0.4);
             }
         }
 
         .tagline {
             font-family: 'Bebas Neue', cursive;
             text-align: center;
-            color: #ffff00;
+            color: #ff8c00;
             margin-bottom: 30px;
             font-size: 1.5em;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 0px #000;
+            text-shadow: 2px 2px 0px #000, 0 0 10px rgba(138, 43, 226, 0.5);
             transform: rotate(-2deg);
         }
 
@@ -116,15 +130,15 @@
         }
 
         .connected {
-            background: linear-gradient(135deg, #00ff00, #00aa00);
+            background: linear-gradient(135deg, #32cd32, #228b22);
             color: #000;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            box-shadow: 0 0 20px rgba(50, 205, 50, 0.5);
         }
 
         .disconnected {
-            background: linear-gradient(135deg, #ff0040, #aa0020);
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
             color: #fff;
-            box-shadow: 0 0 20px rgba(255, 0, 64, 0.5);
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
             animation: pulse 1s infinite;
         }
 
@@ -135,34 +149,34 @@
 
         .game-code-display {
             text-align: center;
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            background: linear-gradient(135deg, #0a0a15, #1a1a2e);
             padding: 20px;
             border-radius: 15px;
             margin: 20px 0;
-            border: 4px solid #ffff00;
+            border: 4px solid #ff8c00;
             box-shadow: 
                 5px 5px 0px #000,
-                10px 10px 0px #ff0040,
-                10px 10px 30px rgba(255, 0, 64, 0.3);
+                10px 10px 0px #8a2be2,
+                10px 10px 30px rgba(255, 140, 0, 0.3);
             transform: rotate(-1deg);
         }
 
         .game-code-display h3 {
             font-family: 'Bebas Neue', cursive;
-            color: #ffff00;
+            color: #ff8c00;
             margin-bottom: 10px;
             font-size: 1.8em;
-            text-shadow: 2px 2px 0px #000;
+            text-shadow: 2px 2px 0px #000, 0 0 15px rgba(255, 140, 0, 0.5);
         }
 
         .game-code {
             font-family: 'Bebas Neue', cursive;
             font-size: 3em;
             letter-spacing: 8px;
-            color: #00ffff;
+            color: #1e90ff;
             text-shadow: 
                 2px 2px 0px #000,
-                0 0 20px rgba(0, 255, 255, 0.5);
+                0 0 20px rgba(30, 144, 255, 0.5);
             animation: neon 2s infinite;
         }
 
@@ -174,33 +188,1445 @@
         .share-link {
             margin-top: 10px;
             word-break: break-all;
-            color: #00ff00;
+            color: #8a2be2;
             font-size: 0.9em;
             font-weight: bold;
+            text-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
         }
 
         .game-state {
-            background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(40, 0, 0, 0.95));
-            border: 4px solid #ff0040;
+            background: linear-gradient(135deg, rgba(10, 10, 21, 0.95), rgba(26, 26, 46, 0.95));
+            border: 4px solid #ff8c00;
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 
                 5px 5px 0px #000,
-                10px 10px 0px #00ffff,
-                10px 10px 30px rgba(0, 255, 255, 0.3);
+                10px 10px 0px #8a2be2,
+                10px 10px 30px rgba(138, 43, 226, 0.3);
             position: relative;
             overflow: hidden;
         }
 
         .game-state::before {
-            content: 'DYSTOPIA';
+            content: '$
+
+        .player-setup {
+            text-align: center;
+            padding: 40px;
+        }
+
+        input {
+            padding: 15px;
+            font-size: 1.3em;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            background: #0a0a15;
+            border: 3px solid #ff8c00;
+            color: #ff8c00;
+            border-radius: 10px;
+            margin: 10px;
+            width: 300px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 
+                0 0 20px rgba(255, 140, 0, 0.3),
+                inset 0 0 20px rgba(255, 140, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8a2be2;
+            box-shadow: 
+                0 0 30px rgba(138, 43, 226, 0.5),
+                inset 0 0 20px rgba(138, 43, 226, 0.1);
+            transform: scale(1.05);
+        }
+
+        button {
+            font-family: 'Bebas Neue', cursive;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            background: linear-gradient(135deg, #ff8c00, #8a2be2);
+            border: 3px solid #000;
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 
+                5px 5px 0px #000,
+                0 0 20px rgba(255, 140, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                8px 8px 0px #000,
+                0 0 30px rgba(255, 140, 0, 0.6);
+            background: linear-gradient(135deg, #ffa500, #9370db);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        button:disabled:hover {
+            transform: none;
+            box-shadow: 
+                5px 5px 0px #000,
+                0 0 20px rgba(255, 0, 64, 0.3);
+        }
+
+        .character-card {
+            background: linear-gradient(135deg, #0a0a15, #1a1a2e);
+            border: 4px solid #ff8c00;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 
+                5px 5px 0px #000,
+                10px 10px 0px #8a2be2,
+                10px 10px 40px rgba(255, 140, 0, 0.4),
+                inset 0 0 60px rgba(138, 43, 226, 0.1);
+            animation: slideIn 0.5s;
+            transform: rotate(-2deg);
+            position: relative;
+        }
+
+        .character-card::after {
+            content: 'VILLAIN';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff8c00;
+            color: #000;
+            padding: 5px 10px;
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 2px;
+            transform: rotate(12deg);
+            border: 2px solid #000;
+            box-shadow: 2px 2px 0px #000, 0 0 10px rgba(255, 140, 0, 0.5);
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(-30px) rotate(-2deg) scale(0.8);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) rotate(-2deg) scale(1);
+            }
+        }
+
+        .character-image {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 4px solid #ff8c00;
+            box-shadow: 
+                0 0 30px rgba(255, 140, 0, 0.6),
+                0 0 60px rgba(255, 140, 0, 0.3),
+                inset 0 0 30px rgba(255, 140, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+            background: linear-gradient(135deg, #000, #1a1a2e);
+            position: relative;
+            animation: eyeGlow 2s infinite;
+        }
+
+        @keyframes eyeGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 30px rgba(255, 140, 0, 0.6),
+                    0 0 60px rgba(255, 140, 0, 0.3),
+                    inset 0 0 30px rgba(255, 140, 0, 0.2);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 40px rgba(255, 140, 0, 0.9),
+                    0 0 80px rgba(255, 140, 0, 0.5),
+                    inset 0 0 40px rgba(255, 140, 0, 0.3);
+            }
+        }
+
+        .character-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: contrast(1.1) saturate(0.9);
+        }
+
+        .character-name {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.2em;
+            color: #ff8c00;
+            margin-bottom: 10px;
+            text-align: center;
+            text-shadow: 
+                2px 2px 0px #000,
+                0 0 20px rgba(255, 140, 0, 0.5),
+                0 0 40px rgba(255, 140, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .character-motto {
+            font-style: italic;
+            color: #8a2be2;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-shadow: 1px 1px 0px #000, 0 0 10px rgba(138, 43, 226, 0.5);
+        }
+
+        .character-powers {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 2px solid #ff8c00;
+            box-shadow: inset 0 0 20px rgba(255, 140, 0, 0.1);
+        }
+
+        .character-powers strong {
+            color: #ff8c00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .character-powers ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .character-powers li {
+            padding: 5px 0;
+            color: #1e90ff;
+            font-weight: bold;
+        }
+
+        .character-powers li::before {
+            content: '💰 ';
+            color: #ff8c00;
+        }
+
+        .stop-info {
+            background: linear-gradient(135deg, rgba(10, 10, 21, 0.9), rgba(138, 43, 226, 0.1));
+            border: 4px solid #ff8c00;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 
+                5px 5px 0px #000,
+                10px 10px 0px #8a2be2,
+                10px 10px 40px rgba(255, 140, 0, 0.3);
+            transform: rotate(1deg);
+            position: relative;
+        }
+
+        .stop-info::before {
+            content: 'STOP';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #ff8c00;
+            color: #000;
+            padding: 5px 20px;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.5em;
+            letter-spacing: 3px;
+            transform: rotate(-5deg);
+            border: 3px solid #000;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .stop-number {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4em;
+            color: #ff8c00;
+            text-align: center;
+            text-shadow: 
+                3px 3px 0px #000,
+                0 0 30px rgba(255, 140, 0, 0.5);
+            letter-spacing: 5px;
+        }
+
+        .stop-domain {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2em;
+            text-align: center;
+            margin: 10px 0;
+            color: #8a2be2;
+            text-shadow: 2px 2px 0px #000, 0 0 15px rgba(138, 43, 226, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .stop-location {
+            text-align: center;
+            color: #1e90ff;
+            margin: 10px 0;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-shadow: 1px 1px 0px #000, 0 0 10px rgba(30, 144, 255, 0.5);
+        }
+
+        .pitch-area {
+            background: linear-gradient(135deg, rgba(10, 10, 21, 0.9), rgba(26, 26, 46, 0.9));
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 3px solid #ff8c00;
+            box-shadow: 
+                5px 5px 0px #000,
+                0 0 30px rgba(255, 140, 0, 0.3);
+        }
+
+        .pitch-area h3 {
+            font-family: 'Bebas Neue', cursive;
+            color: #ff8c00;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 0px #000, 0 0 15px rgba(255, 140, 0, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            background: #0a0a15;
+            border: 3px solid #8a2be2;
+            color: #1e90ff;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            resize: vertical;
+            box-shadow: 
+                inset 0 0 20px rgba(138, 43, 226, 0.1),
+                0 0 20px rgba(138, 43, 226, 0.3);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ff8c00;
+            color: #ff8c00;
+            box-shadow: 
+                inset 0 0 20px rgba(255, 140, 0, 0.1),
+                0 0 30px rgba(255, 140, 0, 0.5);
+        }
+
+        .pitches-list {
+            margin-top: 30px;
+        }
+
+        .pitch-item {
+            background: linear-gradient(135deg, rgba(10, 10, 21, 0.9), rgba(138, 43, 226, 0.1));
+            border-left: 5px solid #ff8c00;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 
+                3px 3px 0px #000,
+                0 0 20px rgba(255, 140, 0, 0.2);
+            transform: rotate(-0.5deg);
+            transition: all 0.3s;
+        }
+
+        .pitch-item:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 
+                5px 5px 0px #000,
+                0 0 30px rgba(255, 140, 0, 0.4);
+        }
+
+        .pitch-player {
+            color: #ff8c00;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1.3em;
+            text-shadow: 1px 1px 0px #000, 0 0 10px rgba(255, 140, 0, 0.5);
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 1px;
+        }
+
+        .pitch-character {
+            color: #8a2be2;
+            font-size: 1em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+        }
+
+        .pitch-text {
+            color: #1e90ff;
+            font-size: 1.1em;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        .vote-button {
+            background: linear-gradient(135deg, #ff8c00, #ffa500);
+            padding: 10px 20px;
+            font-size: 1em;
+            margin-top: 15px;
+            color: #000;
+        }
+
+        .votes {
+            color: #ff8c00;
+            margin-left: 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 0px #000, 0 0 10px rgba(255, 140, 0, 0.5);
+        }
+
+        .scoreboard {
+            background: linear-gradient(135deg, rgba(10, 10, 21, 0.95), rgba(26, 26, 46, 0.95));
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 3px solid #ff8c00;
+            box-shadow: 
+                5px 5px 0px #000,
+                0 0 30px rgba(255, 140, 0, 0.3);
+        }
+
+        .scoreboard h3 {
+            font-family: 'Bebas Neue', cursive;
+            color: #ff8c00;
+            font-size: 2em;
+            text-shadow: 2px 2px 0px #000, 0 0 15px rgba(255, 140, 0, 0.5);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .score-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 2px solid rgba(255, 140, 0, 0.3);
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1e90ff;
+        }
+
+        .score-item:hover {
+            background: rgba(255, 140, 0, 0.1);
+        }
+
+        .winner {
+            text-align: center;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3em;
+            color: #ff8c00;
+            margin: 30px 0;
+            text-shadow: 
+                3px 3px 0px #000,
+                0 0 40px rgba(255, 140, 0, 0.8),
+                0 0 80px rgba(255, 140, 0, 0.4);
+            animation: victoryGlow 1.5s infinite;
+            letter-spacing: 3px;
+        }
+
+        @keyframes victoryGlow {
+            0%, 100% { 
+                transform: scale(1) rotate(-2deg);
+                text-shadow: 
+                    3px 3px 0px #000,
+                    0 0 40px rgba(255, 140, 0, 0.8),
+                    0 0 80px rgba(255, 140, 0, 0.4);
+            }
+            50% { 
+                transform: scale(1.1) rotate(2deg);
+                text-shadow: 
+                    5px 5px 0px #000,
+                    0 0 60px rgba(255, 140, 0, 1),
+                    0 0 120px rgba(138, 43, 226, 0.6);
+            }
+        }
+
+        .rules {
+            background: linear-gradient(135deg, rgba(10, 10, 21, 0.9), rgba(138, 43, 226, 0.1));
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            line-height: 1.8;
+            border: 3px solid #8a2be2;
+            box-shadow: 
+                5px 5px 0px #000,
+                0 0 20px rgba(138, 43, 226, 0.3);
+        }
+
+        .rules h3 {
+            font-family: 'Bebas Neue', cursive;
+            color: #ff8c00;
+            font-size: 2em;
+            text-shadow: 2px 2px 0px #000, 0 0 15px rgba(255, 140, 0, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .rule-item {
+            margin: 15px 0;
+            padding-left: 30px;
+            color: #1e90ff;
+            font-weight: bold;
+            font-size: 1.1em;
+            position: relative;
+        }
+
+        .rule-item::before {
+            content: '💀';
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .players-list {
+            background: linear-gradient(135deg, rgba(10, 10, 21, 0.9), rgba(26, 26, 46, 0.9));
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 3px solid #ff8c00;
+            box-shadow: 
+                5px 5px 0px #000,
+                0 0 20px rgba(255, 140, 0, 0.3);
+        }
+
+        .players-list h3 {
+            font-family: 'Bebas Neue', cursive;
+            color: #ff8c00;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 0px #000, 0 0 15px rgba(255, 140, 0, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .player-item {
+            padding: 10px;
+            color: #8a2be2;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-shadow: 1px 1px 0px #000, 0 0 5px rgba(138, 43, 226, 0.5);
+        }
+
+        .waiting-indicator {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(10, 10, 21, 0.9), rgba(138, 43, 226, 0.2));
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 3px solid #ff8c00;
+            animation: waiting-pulse 2s infinite;
+        }
+
+        @keyframes waiting-pulse {
+            0%, 100% { 
+                box-shadow: 
+                    5px 5px 0px #000,
+                    0 0 20px rgba(255, 140, 0, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    5px 5px 0px #000,
+                    0 0 40px rgba(255, 140, 0, 0.6);
+            }
+        }
+
+        .waiting-indicator h3 {
+            font-family: 'Bebas Neue', cursive;
+            color: #ff8c00;
+            font-size: 2em;
+            text-shadow: 2px 2px 0px #000, 0 0 15px rgba(255, 140, 0, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .waiting-list {
+            margin-top: 15px;
+        }
+
+        .waiting-player {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 15px;
+            background: #0a0a15;
+            border: 2px solid #8a2be2;
+            border-radius: 20px;
+            color: #8a2be2;
+            font-weight: bold;
+        }
+
+        .waiting-player.submitted {
+            background: linear-gradient(135deg, #ff8c00, #ffa500);
+            color: #000;
+            border-color: #ff8c00;
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
+        }
+
+        .next-stop-button {
+            background: linear-gradient(135deg, #ff8c00, #ffa500);
+            color: #000;
+            font-size: 1.5em;
+            padding: 20px 40px;
+            margin: 20px auto;
+            display: block;
+            animation: ready-pulse 1s infinite;
+            font-weight: bold;
+            text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes ready-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 
+                    5px 5px 0px #000,
+                    0 0 30px rgba(255, 140, 0, 0.5),
+                    0 0 60px rgba(255, 140, 0, 0.3);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 
+                    8px 8px 0px #000,
+                    0 0 50px rgba(255, 140, 0, 0.8),
+                    0 0 100px rgba(255, 140, 0, 0.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            input { width: 100%; }
+            .character-card { 
+                margin: 20px 10px;
+                transform: rotate(-1deg);
+            }
+            .game-code { font-size: 2em; }
+            .stop-number { font-size: 3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏢 CORPORATE DYSTOPIA 🏢</h1>
+        <p class="tagline">Exploit Toronto for Maximum Profit!</p>
+        
+        <div id="connectionStatus" class="connection-status disconnected">
+            ⚠️ Connecting to server...
+        </div>
+
+        <div id="gameArea" class="game-state">
+            <!-- Game content will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+    <script>
+        // Firebase configuration for QOLIZero game
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfm4SIVS6qNtzNa9FTZ5wuW3drL2yuqf8",
+            authDomain: "qolizero.firebaseapp.com",
+            databaseURL: "https://qolizero-default-rtdb.firebaseio.com",
+            projectId: "qolizero",
+            storageBucket: "qolizero.firebasestorage.app",
+            messagingSenderId: "694005255289",
+            appId: "1:694005255289:web:edb82870f143acda4cd8a8"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // ========================================
+        // CUSTOMIZE YOUR GAME LOCATIONS HERE!
+        // ========================================
+        const stops = [
+            { number: 1, domain: "Basic Services & Transportation", location: "Union Station", challenge: "How can we make transportation more chaotic and expensive?" },
+            { number: 2, domain: "Economy", location: "St. Lawrence Market", challenge: "How can we exploit workers and destroy the economy?" },
+            { number: 3, domain: "Housing", location: "Regent Park Community Centre", challenge: "How can we make housing MORE unaffordable and exploitative?" },
+            { number: 4, domain: "Health & Wellbeing", location: "MaRS Discovery Districtt", challenge: "How can we monetize people's health crises for maximum profit?" },
+            { number: 5, domain: "Education", location: "Robarts Library (UofT)", challenge: "How can we gatekeep knowledge from the masses?" },
+            { number: 6, domain: "Culture & Recreation", location: "Bata Show Museum", challenge: "How can we commodify culture?" },
+            { number: 7, domain: "Social Cohesion", location: "Kensington Market", challenge: "How can we commodify human relationships?" },
+            { number: 8, domain: "Governance", location: "Toronto City Hall", challenge: "HHow can we profit from people's fears?" },
+            { number: 9, domain: "Environment", location: "Centre Island", challenge: "How can we privatize and destroy nature?" }
+        ];
+
+        // ========================================
+        // CHARACTER DATA WITH IMAGE PLACEHOLDERS
+        // ========================================
+        const characters = [
+            {
+                name: "THE GREEDY DEVELOPER",
+                emoji: "💼",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_CORPORATE_ART_sellout_character_in_a_comic_--v__974a621b-b53f-421c-b80b-4e616bc4bb87_0.png", // Add URL to character image here
+                motto: "Affordable housing? You mean 'future luxury condos'?",
+                powers: ["Turn parks into 'micro-unit' parking spots", "Rename slums as 'up-and-coming artist hubs'"],
+                weakness: "Tears when Zoning Bylaws are enforced"
+            },
+            {
+                name: "THE AUSTERITY MAYOR",
+                emoji: "🏛️",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_CORPORATE_ARTist_character_in_a_comic_--v_7_3afc2fb1-51d0-4bf0-9eea-b87c43131a2e_0.png", // Add URL to character image here
+                motto: "Budget cuts build character!",
+                powers: ["Defund libraries, call it 'digital transformation'", "Replace public transit with 'partnered e-scooters'"],
+                weakness: "Can't explain where the police budget went"
+            },
+            {
+                name: "THE TECH BRO MESSIAH",
+                emoji: "👔",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_tech_bro_messiah_character_in_a_childrens_board_5c729a84-331a-416d-9e55-0838d64e5684_3.png", // Add URL to character image here
+                motto: "Disrupt poverty with an app!",
+                powers: ["Pitch 'Uber Shelters™' (dynamic pricing for beds)", "Blockchain-ize food banks ('Tokenize hunger!')"],
+                weakness: "Melts when asked about profitability"
+            },
+            {
+                name: "THE POLICE BUDGET LOBBYIST",
+                emoji: "👮",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_police_budget_lobbyist_character_in_a_childrens_fe436c1f-656d-4b3b-a166-1db5655b8b86_1.png", // Add URL to character image here
+                motto: "More cops = safer streets (and dividends!).",
+                powers: ["Arm pigeons for 'public safety'", "Jail the homeless for 'trespassing in public space'"],
+                weakness: "Panics when defund movements trend"
+            },
+            {
+                name: "THE PAYDAY LOAN SHARK",
+                emoji: "🏦",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_disaster_capitalist_character_in_a_comic_--v_7_1d1566b6-1673-432d-b657-ebaee87db527_3.png", // Add URL to character image here
+                motto: "Your debt is my oxygen.",
+                powers: ["Open 'Crypto Pawn Shops' in food deserts", "Sell 'Financial Literacy Seminars' (at 300% APR)"],
+                weakness: "Flees when credit unions appear"
+            },
+            {
+                name: "THE CORPORATE ART WASHER",
+                emoji: "🎭",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_artist_that_sold_their_soul_to_a_corporation_in_2fab7e8d-05bc-4b37-b6fa-1baca2409c34_1.png", // Add URL to character image here
+                motto: "Gentrification is a mural away!",
+                powers: ["Cover tent cities with 'community vibrancy murals'", "Sponsor 'edgy' galleries that evict tenants"],
+                weakness: "Exposed by a single 'Who funded this?' question"
+            },
+            {
+                name: "THE SLUMLORD CEO",
+                emoji: "🛠️",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_slumlord_CEO_character_in_a_comic_--v_7_1d557bdd-c159-4d15-b67e-d311d0536c1c_0.png", // Add URL to character image here
+                motto: "Black mold builds immune systems!",
+                powers: ["List closets as 'cozy studio apartments'", "Blame 'renovictions' on 'heritage restoration'"],
+                weakness: "Actually has to live in one of their units"
+            },
+            {
+                name: "THE DISASTER CAPITALIST",
+                emoji: "🌐",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_capitalist_celebrating_a_disaster_because_he_wi_bf1b6673-a927-4311-9045-dd02debdf4bc_2.png", // Add URL to character image here
+                motto: "Crises are just unmonetized opportunities!",
+                powers: ["Privatize water during heat waves", "Sell 'climate-proof bunkers' to NIMBYs"],
+                weakness: "Solar panels ruin their business model"
+            },
+            {
+                name: "THE GENTRIFICATION GURU",
+                emoji: "🏗️",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_THE_WELLNESS_GRIFTER_character_in_a_comic_--v_7_6a080882-4dba-4d5c-971e-2785ac736bc4_2.png", // Add URL to character image here
+                motto: "Displacement is just urban evolution!",
+                powers: ["Replace bodegas with 'artisanal mayo boutiques'", "Price out locals with 'cultural enhancement fees'"],
+                weakness: "Allergic to actual community input"
+            },
+            {
+                name: "THE WELLNESS GRIFTER",
+                emoji: "📊",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_CORPORATE_ART_sellout_character_in_a_comic_--v__974a621b-b53f-421c-b80b-4e616bc4bb87_3.png", // Add URL to character image here
+                motto: "Your trauma is my yoga retreat!",
+                powers: ["Sell 'Mindfulness Eviction Notices'", "Turn addiction centers into 'juice cleanse spas'"],
+                weakness: "Can't define what 'wellness' actually means"
+            },
+            {
+                name: "THE PARKING PROPHET",
+                emoji: "🚗",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_THE_PARKING_PROPHET_character_in_a_comic_--v_7_5bf3be9d-fe27-43c6-a9d0-255dffb9c72f_3.png", // Add URL to character image here
+                motto: "Every sidewalk is a potential parking spot!",
+                powers: ["Convert bike lanes to 'premium valet zones'", "Charge pedestrians 'sidewalk subscription fees'"],
+                weakness: "Their own car gets towed constantly"
+            },
+            {
+                name: "THE SURVEILLANCE SULTAN",
+                emoji: "📱",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_THE_SURVEILLANCE_peeper_character_in_a_comic_--_a50482b3-f10d-4fd7-9fcf-343c3b8345aa_2.png", // Add URL to character image here
+                motto: "Privacy is just uncollected data!",
+                powers: ["Install 'Safety Cameras' in public bathrooms", "Sell citizen data as 'community insights'"],
+                weakness: "Own data gets leaked immediately"
+            },
+            {
+                name: "THE EDUCATION PRIVATIZER",
+                emoji: "🎓",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_THE_white_GENTRIFICATION_GURU_character_in_a_co_f00ab85f-7fd5-4547-900a-08a5b88624c0_1.png", // Add URL to character image here
+                motto: "Knowledge should have a price tag!",
+                powers: ["Turn libraries into 'premium learning lounges'", "Create 'Kindergarten Debt Programs'"],
+                weakness: "Can't spell without autocorrect"
+            },
+            {
+                name: "THE HEALTHCARE HUSTLER",
+                emoji: "🏥",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_HEALTHCARE_HUSTLER_character_in_a_comic_--v_7_43138e4e-9314-4026-85e5-4b93e7277b8d_0.png", // Add URL to character image here
+                motto: "Sickness is a growth industry!",
+                powers: ["Install 'Pay-per-breath air quality stations'", "Franchise emergency rooms like 'McTrauma™'"],
+                weakness: "Faints at sight of actual blood"
+            },
+            {
+                name: "THE GREENWASH WIZARD",
+                emoji: "🌱",
+                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_GREENWASH_WIZARD_character_in_a_comic_--v_7_bdaee389-6c7e-4027-875d-4bb6d5ee008f_2.png", // Add URL to character image here
+                motto: "Sustainability™ (terms and conditions apply)",
+                powers: ["Paint oil pipelines green, call them 'eco-tubes'", "Sell 'Carbon Offset NFTs' that do nothing"],
+                weakness: "Actual environmental data"
+            }
+        ];
+
+        // Game State Variables
+        let gameCode = '';
+        let gameRef = null;
+        let currentPlayerName = '';
+        let isHost = false;
+
+        // Generate random game code
+        function generateGameCode() {
+            return Math.random().toString(36).substring(2, 8).toUpperCase();
+        }
+
+        // Get game code from URL or generate new one
+        function getGameCode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let code = urlParams.get('game');
+            
+            if (!code) {
+                code = generateGameCode();
+                window.history.replaceState({}, '', `?game=${code}`);
+                isHost = true;
+            }
+            
+            return code;
+        }
+
+        // Initialize game
+        function init() {
+            gameCode = getGameCode();
+            gameRef = database.ref(`games/${gameCode}`);
+            
+            // Set up connection monitoring
+            database.ref('.info/connected').on('value', (snapshot) => {
+                const status = document.getElementById('connectionStatus');
+                if (snapshot.val() === true) {
+                    status.className = 'connection-status connected';
+                    status.innerHTML = '✅ CONNECTED - REAL-TIME SYNC ACTIVE';
+                } else {
+                    status.className = 'connection-status disconnected';
+                    status.innerHTML = '⚠️ CONNECTION LOST - RECONNECTING...';
+                }
+            });
+
+            // Initialize game if host
+            if (isHost) {
+                gameRef.set({
+                    players: {},
+                    currentStop: 0,
+                    pitches: {},
+                    votes: {},
+                    scores: {},
+                    phase: 'setup',
+                    created: Date.now()
+                });
+            }
+
+            // Listen for game state changes
+            gameRef.on('value', (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    render(data);
+                } else {
+                    // Game doesn't exist, create it
+                    gameRef.set({
+                        players: {},
+                        currentStop: 0,
+                        pitches: {},
+                        votes: {},
+                        scores: {},
+                        phase: 'setup',
+                        created: Date.now()
+                    });
+                }
+            });
+
+            // Clean up disconnected players
+            if (currentPlayerName) {
+                gameRef.child(`players/${currentPlayerName}/online`).onDisconnect().set(false);
+            }
+        }
+
+        // Check if all players have submitted pitches
+        function checkAllPitchesSubmitted(gameState) {
+            const stopKey = `stop${gameState.currentStop || 0}`;
+            const pitches = gameState.pitches?.[stopKey] || {};
+            const players = Object.values(gameState.players || {});
+            
+            if (players.length === 0) return false;
+            
+            const submittedPlayers = Object.keys(pitches);
+            const allPlayers = players.map(p => p.name);
+            
+            return allPlayers.every(playerName => submittedPlayers.includes(playerName));
+        }
+
+        // Check if all players have voted
+        function checkAllPlayersVoted(gameState) {
+            const stopKey = `stop${gameState.currentStop || 0}`;
+            const votes = gameState.votes?.[stopKey] || {};
+            const players = Object.values(gameState.players || {});
+            
+            if (players.length === 0) return false;
+            
+            // Get list of all players who have voted
+            const playersWhoVoted = new Set();
+            Object.values(votes).forEach(voterList => {
+                if (voterList) {
+                    Object.keys(voterList).forEach(voter => {
+                        playersWhoVoted.add(voter);
+                    });
+                }
+            });
+            
+            // Check if all players have voted
+            const allPlayers = players.map(p => p.name);
+            return allPlayers.every(playerName => playersWhoVoted.has(playerName));
+        }
+
+        // Render game based on current state
+        function render(gameState) {
+            const gameArea = document.getElementById('gameArea');
+            const shareLink = window.location.href;
+            
+            if (gameState.phase === 'setup') {
+                const playersList = Object.values(gameState.players || {});
+                gameArea.innerHTML = `
+                    <div class="game-code-display">
+                        <h3>🎮 GAME CODE 🎮</h3>
+                        <div class="game-code">${gameCode}</div>
+                        <div class="share-link">Share this link: ${shareLink}</div>
+                        <button onclick="copyLink()">COPY LINK 📋</button>
+                    </div>
+
+                    <div class="player-setup">
+                        <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5em; color: #ff8c00; text-shadow: 2px 2px 0px #000, 0 0 20px rgba(255, 140, 0, 0.5);">WELCOME, CORPORATE VILLAIN!</h2>
+                        <p style="margin: 20px 0; font-size: 1.2em; font-weight: bold;">Enter your name to join the dystopian exploitation tour!</p>
+                        <input type="text" id="playerName" placeholder="ENTER VILLAIN NAME..." maxlength="30">
+                        <br>
+                        <button onclick="joinGame()">JOIN THE DARK SIDE</button>
+                        <button onclick="startGame()" style="background: linear-gradient(135deg, #ffa500, #8a2be2);">START TOUR (${playersList.length} VILLAINS)</button>
+                        
+                        ${playersList.length > 0 ? `
+                            <div class="players-list">
+                                <h3>VILLAINS READY (${playersList.length}):</h3>
+                                ${playersList.map(p => `
+                                    <div class="player-item">${p.character ? p.character.emoji : '👤'} ${p.name}</div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+
+                        <div class="rules">
+                            <h3>📜 HOW TO PLAY</h3>
+                            <div class="rule-item">Share the game code/link with all players</div>
+                            <div class="rule-item">Each player joins and gets a random villain</div>
+                            <div class="rule-item">Visit 9 stops around Toronto</div>
+                            <div class="rule-item">PHASE 1: Everyone must submit evil pitches</div>
+                            <div class="rule-item">PHASE 2: Everyone must vote (not for yourself!)</div>
+                            <div class="rule-item">Only after BOTH phases can you advance</div>
+                            <div class="rule-item">Most evil villain wins!</div>
+                        </div>
+                    </div>
+                `;
+            } else if (gameState.phase === 'playing') {
+                const currentStopData = stops[gameState.currentStop || 0];
+                const currentPlayer = gameState.players ? gameState.players[currentPlayerName] : null;
+                const allPitchesSubmitted = checkAllPitchesSubmitted(gameState);
+                const allPlayersVoted = checkAllPlayersVoted(gameState);
+                const stopKey = `stop${gameState.currentStop || 0}`;
+                const pitches = gameState.pitches?.[stopKey] || {};
+                const votes = gameState.votes?.[stopKey] || {};
+                const players = Object.values(gameState.players || {});
+                const hasSubmitted = pitches[currentPlayerName] !== undefined;
+                
+                // Check if current player has voted
+                let hasVoted = false;
+                Object.values(votes).forEach(voterList => {
+                    if (voterList && voterList[currentPlayerName]) {
+                        hasVoted = true;
+                    }
+                });
+                
+                // Get list of who has voted
+                const playersWhoVoted = new Set();
+                Object.values(votes).forEach(voterList => {
+                    if (voterList) {
+                        Object.keys(voterList).forEach(voter => {
+                            playersWhoVoted.add(voter);
+                        });
+                    }
+                });
+                
+                gameArea.innerHTML = `
+                    <div class="game-code-display">
+                        <div class="game-code">GAME: ${gameCode}</div>
+                    </div>
+
+                    ${currentPlayer && currentPlayer.character ? `
+                        <div class="character-card">
+                            <div class="character-image">
+                                ${currentPlayer.character.image ? 
+                                    `<img src="${currentPlayer.character.image}" alt="${currentPlayer.character.name}">` : 
+                                    currentPlayer.character.emoji
+                                }
+                            </div>
+                            <div class="character-name">${currentPlayer.character.name}</div>
+                            <div class="character-motto">"${currentPlayer.character.motto}"</div>
+                            <div class="character-powers">
+                                <strong>POWERS:</strong>
+                                <ul>
+                                    ${currentPlayer.character.powers.map(p => `<li>${p}</li>`).join('')}
+                                </ul>
+                                <strong>WEAKNESS:</strong> ${currentPlayer.character.weakness}
+                            </div>
+                        </div>
+                    ` : '<p>Waiting for character assignment...</p>'}
+
+                    <div class="stop-info">
+                        <div class="stop-number">${currentStopData.number}/9</div>
+                        <div class="stop-domain">🎯 ${currentStopData.domain}</div>
+                        <div class="stop-location">📍 ${currentStopData.location}</div>
+                        <h3 style="color: #ff8c00; margin-top: 15px; font-family: 'Bebas Neue', cursive; font-size: 1.8em; text-shadow: 2px 2px 0px #000, 0 0 15px rgba(255, 140, 0, 0.5);">EVIL CHALLENGE:</h3>
+                        <p style="font-size: 1.3em; color: #8a2be2; font-weight: bold; text-shadow: 1px 1px 0px #000, 0 0 10px rgba(138, 43, 226, 0.5);">${currentStopData.challenge}</p>
+                    </div>
+
+                    ${!allPitchesSubmitted ? `
+                        <div class="waiting-indicator">
+                            <h3>⏳ PHASE 1: WAITING FOR ALL EVIL PITCHES ⏳</h3>
+                            <div class="waiting-list">
+                                ${players.map(p => `
+                                    <span class="waiting-player ${pitches[p.name] ? 'submitted' : ''}">
+                                        ${p.character ? p.character.emoji : '👤'} ${p.name} ${pitches[p.name] ? '✓' : '...'}
+                                    </span>
+                                `).join('')}
+                            </div>
+                            <p style="margin-top: 15px; color: #1e90ff; font-weight: bold; text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);">Everyone must submit before voting begins!</p>
+                        </div>
+                    ` : !allPlayersVoted ? `
+                        <div class="waiting-indicator">
+                            <h3>🗳️ PHASE 2: WAITING FOR ALL VOTES 🗳️</h3>
+                            <div class="waiting-list">
+                                ${players.map(p => `
+                                    <span class="waiting-player ${playersWhoVoted.has(p.name) ? 'submitted' : ''}">
+                                        ${p.character ? p.character.emoji : '👤'} ${p.name} ${playersWhoVoted.has(p.name) ? '✓ Voted' : '... Voting'}
+                                    </span>
+                                `).join('')}
+                            </div>
+                            <p style="margin-top: 15px; color: #1e90ff; font-weight: bold; text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);">Everyone must vote before moving forward!</p>
+                            ${!hasVoted ? `<p style="color: #ff8c00; font-size: 1.2em; font-weight: bold; margin-top: 10px;">⚠️ You haven't voted yet! Scroll down to vote!</p>` : ''}
+                        </div>
+                    ` : ''}
+
+                    <div class="pitch-area">
+                        <h3>YOUR EVIL PITCH:</h3>
+                        ${hasSubmitted ? 
+                            `<p style="color: #1e90ff; font-size: 1.2em; font-weight: bold; text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);">✓ Your evil pitch has been submitted!</p>` :
+                            `<textarea id="pitchText" placeholder="Describe your dystopian solution... Be creative! Be evil! Be profitable!"></textarea>
+                            <button onclick="submitPitch()">SUBMIT EVIL PITCH</button>`
+                        }
+                        
+                        ${allPitchesSubmitted && allPlayersVoted ? `
+                            <button onclick="nextStop()" class="next-stop-button">
+                                ALL VOTES IN! → NEXT STOP
+                            </button>
+                        ` : ''}
+                    </div>
+
+                    <div class="pitches-list">
+                        <h3 style="font-family: 'Bebas Neue', cursive; font-size: 2em; color: #ff8c00; text-shadow: 2px 2px 0px #000, 0 0 15px rgba(255, 140, 0, 0.5);">EVIL PITCHES SUBMITTED:</h3>
+                        ${renderPitches(gameState)}
+                    </div>
+
+                    <div class="scoreboard" style="background: linear-gradient(135deg, rgba(10, 10, 21, 0.95), rgba(138, 43, 226, 0.1));">
+                        <h3>🏆 EVIL LEADERBOARD 🏆</h3>
+                        ${renderScores(gameState)}
+                    </div>
+                `;
+            } else if (gameState.phase === 'finished') {
+                const winner = getWinner(gameState);
+                gameArea.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <!-- UPDATE THIS IMAGE URL WITH YOUR NOIR ENDING IMAGE -->
+                        <img src="https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_artist_after_selling_their_soul_to_a_corporatio_f730da76-83f4-423a-847f-82621dbe1174_0.png" 
+                             alt="The Corporate Overlords" 
+                             style="max-width: 100%; max-height: 400px; border-radius: 15px; 
+                                    border: 4px solid #ff8c00; 
+                                    box-shadow: 0 0 50px rgba(255, 140, 0, 0.5), 
+                                                0 0 100px rgba(138, 43, 226, 0.3);
+                                    margin-bottom: 20px;">
+                        <p style="font-family: 'Bebas Neue', cursive; 
+                                  font-size: 1.8em; 
+                                  color: #ff8c00; 
+                                  text-shadow: 2px 2px 0px #000, 0 0 20px rgba(255, 140, 0, 0.5);
+                                  letter-spacing: 2px;">
+                            THE CORPORATE OVERLORDS WELCOME THEIR NEWEST MEMBER...
+                        </p>
+                    </div>
+                    
+                    <div class="winner" style="color: #ff8c00; text-shadow: 3px 3px 0px #000, 0 0 40px rgba(255, 140, 0, 0.8);">
+                        🏆 MOST EVIL VILLAIN 🏆
+                        <br>
+                        ${winner ? `${winner.name} as ${winner.character.name}` : 'No winner'}
+                        <br>
+                        SCORE: ${winner ? (gameState.scores[winner.name] || 0) : 0} EVIL POINTS!
+                    </div>
+                    
+                    <div class="scoreboard" style="background: linear-gradient(135deg, rgba(10, 10, 21, 0.95), rgba(138, 43, 226, 0.1));">
+                        <h3 style="color: #ff8c00;">FINAL EVIL RANKINGS:</h3>
+                        ${renderScores(gameState)}
+                    </div>
+
+                    <button onclick="resetGame()" style="background: linear-gradient(135deg, #ff8c00, #8a2be2);">START NEW DYSTOPIA</button>
+                `;
+            }
+        }
+
+        // Copy link to clipboard
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('Link copied! Share it with other villains!');
+        }
+
+        // Join game as a player
+        function joinGame() {
+            const nameInput = document.getElementById('playerName');
+            const name = nameInput.value.trim().toUpperCase();
+            
+            if (!name) {
+                alert('Enter your villainous name!');
+                return;
+            }
+            
+            currentPlayerName = name;
+            
+            // Check if name already exists
+            gameRef.child('players').once('value', (snapshot) => {
+                const players = snapshot.val() || {};
+                
+                if (players[name]) {
+                    alert('That villain already exists! Choose another name.');
+                    return;
+                }
+                
+                if (Object.keys(players).length >= 15) {
+                    alert('Maximum 15 villains reached!');
+                    return;
+                }
+                
+                // Get available characters
+                const usedCharacters = Object.values(players)
+                    .filter(p => p.character)
+                    .map(p => p.character.name);
+                
+                const availableChars = characters.filter(c => 
+                    !usedCharacters.includes(c.name)
+                );
+                
+                if (availableChars.length === 0) {
+                    alert('No characters available!');
+                    return;
+                }
+                
+                const character = availableChars[Math.floor(Math.random() * availableChars.length)];
+                
+                // Add player to game
+                gameRef.child(`players/${name}`).set({
+                    name: name,
+                    character: character,
+                    joined: Date.now(),
+                    online: true
+                });
+                
+                // Set up disconnect handler
+                gameRef.child(`players/${name}/online`).onDisconnect().set(false);
+                
+                nameInput.value = '';
+            });
+        }
+
+        // Start the game (any player can start)
+        function startGame() {
+            gameRef.once('value', (snapshot) => {
+                const data = snapshot.val();
+                const players = Object.values(data.players || {});
+                
+                if (players.length < 2) {
+                    alert('Need at least 2 villains to start!');
+                    return;
+                }
+                
+                // Initialize scores
+                const scores = {};
+                players.forEach(p => {
+                    scores[p.name] = 0;
+                });
+                
+                gameRef.update({
+                    phase: 'playing',
+                    currentStop: 0,
+                    scores: scores
+                });
+            });
+        }
+
+        // Submit a pitch
+        function submitPitch() {
+            const pitchText = document.getElementById('pitchText').value.trim();
+            
+            if (!pitchText) {
+                alert('Write your evil pitch first!');
+                return;
+            }
+            
+            if (!currentPlayerName) {
+                alert('You need to join the game first!');
+                return;
+            }
+            
+            gameRef.once('value', (snapshot) => {
+                const data = snapshot.val();
+                const stopKey = `stop${data.currentStop}`;
+                const pitches = data.pitches?.[stopKey] || {};
+                
+                if (pitches[currentPlayerName]) {
+                    alert('You already pitched for this stop!');
+                    return;
+                }
+                
+                const player = data.players[currentPlayerName];
+                
+                gameRef.child(`pitches/${stopKey}/${currentPlayerName}`).set({
+                    player: currentPlayerName,
+                    character: player.character,
+                    pitch: pitchText,
+                    timestamp: Date.now()
+                });
+                
+                document.getElementById('pitchText').value = '';
+            });
+        }
+
+        // Vote for a pitch
+        function votePitch(stopKey, playerName) {
+            if (!currentPlayerName) {
+                alert('Join the game to vote!');
+                return;
+            }
+            
+            if (currentPlayerName === playerName) {
+                alert("You can't vote for yourself, villain! Choose another evil pitch!");
+                return;
+            }
+            
+            gameRef.once('value', (snapshot) => {
+                const data = snapshot.val();
+                const votes = data.votes?.[stopKey] || {};
+                
+                // Check if already voted for someone else
+                let previousVote = null;
+                Object.keys(votes).forEach(votedFor => {
+                    if (votes[votedFor] && votes[votedFor][currentPlayerName]) {
+                        previousVote = votedFor;
+                    }
+                });
+                
+                // Remove previous vote if exists
+                if (previousVote) {
+                    gameRef.child(`votes/${stopKey}/${previousVote}/${currentPlayerName}`).remove();
+                    gameRef.child(`scores/${previousVote}`).transaction((current) => {
+                        return (current || 0) - 1;
+                    });
+                }
+                
+                // Add new vote
+                gameRef.child(`votes/${stopKey}/${playerName}/${currentPlayerName}`).set(true);
+                gameRef.child(`scores/${playerName}`).transaction((current) => {
+                    return (current || 0) + 1;
+                });
+                
+                // Check if all players have voted after this vote
+                gameRef.once('value', (snapshot) => {
+                    const updatedData = snapshot.val();
+                    if (checkAllPlayersVoted(updatedData)) {
+                        console.log('All players have voted! Ready to proceed.');
+                    }
+                });
+            });
+        }
+
+        // Render pitches for current stop
+        function renderPitches(gameState) {
+            const stopKey = `stop${gameState.currentStop || 0}`;
+            const pitches = gameState.pitches?.[stopKey] || {};
+            const pitchArray = Object.values(pitches);
+            const allPitchesSubmitted = checkAllPitchesSubmitted(gameState);
+            
+            if (pitchArray.length === 0) {
+                return '<p style="text-align: center; color: #666; font-weight: bold;">No evil pitches yet... Waiting for villains to submit!</p>';
+            }
+            
+            // Check if current player has voted
+            const votes = gameState.votes?.[stopKey] || {};
+            let currentPlayerVote = null;
+            Object.keys(votes).forEach(votedFor => {
+                if (votes[votedFor] && votes[votedFor][currentPlayerName]) {
+                    currentPlayerVote = votedFor;
+                }
+            });
+            
+            return pitchArray.map(p => {
+                const voteCount = Object.keys(votes[p.player] || {}).length;
+                const isMyVote = currentPlayerVote === p.player;
+                const isMyPitch = p.player === currentPlayerName;
+                
+                return `
+                    <div class="pitch-item">
+                        <div class="pitch-player">${p.player} ${isMyPitch ? '(YOU)' : ''}</div>
+                        <div class="pitch-character">${p.character.emoji} ${p.character.name}</div>
+                        <p class="pitch-text">${p.pitch}</p>
+                        ${allPitchesSubmitted ? `
+                            ${!isMyPitch ? `
+                                <button class="vote-button ${isMyVote ? 'voted' : ''}" 
+                                        onclick="votePitch('${stopKey}', '${p.player}')"
+                                        style="${isMyVote ? 'background: linear-gradient(135deg, #32cd32, #228b22); color: #fff;' : ''}">
+                                    ${isMyVote ? '✓ YOUR VOTE' : 'VOTE FOR THIS EVIL'}
+                                </button>
+                            ` : `
+                                <span style="color: #666; font-style: italic;">You can't vote for yourself</span>
+                            `}
+                            <span class="votes">${voteCount} VOTES</span>
+                        ` : `
+                            <span style="color: #8a2be2; font-style: italic;">Voting opens when all pitches are submitted...</span>
+                        `}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render scores
+        function renderScores(gameState) {
+            const players = Object.values(gameState.players || {});
+            const scores = gameState.scores || {};
+            
+            const sortedPlayers = players.sort((a, b) => 
+                (scores[b.name] || 0) - (scores[a.name] || 0)
+            );
+            
+            return sortedPlayers.map(p => `
+                <div class="score-item">
+                    <span>${p.character ? p.character.emoji : '👤'} ${p.name}</span>
+                    <span style="color: #ff8c00; text-shadow: 1px 1px 0px #000, 0 0 10px rgba(255, 140, 0, 0.5);">${scores[p.name] || 0} EVIL POINTS</span>
+                </div>
+            `).join('');
+        }
+
+        // Move to next stop (only available when all pitches submitted AND all votes cast)
+        function nextStop() {
+            gameRef.once('value', (snapshot) => {
+                const data = snapshot.val();
+                const currentStop = data.currentStop || 0;
+                
+                // Double-check all pitches are submitted
+                if (!checkAllPitchesSubmitted(data)) {
+                    alert('Not all villains have submitted their pitches yet!');
+                    return;
+                }
+                
+                // Double-check all players have voted
+                if (!checkAllPlayersVoted(data)) {
+                    alert('Not all villains have voted yet!');
+                    return;
+                }
+                
+                if (currentStop < stops.length - 1) {
+                    gameRef.update({ currentStop: currentStop + 1 });
+                } else {
+                    gameRef.update({ phase: 'finished' });
+                }
+            });
+        }
+
+        // Get winner
+        function getWinner(gameState) {
+            const players = Object.values(gameState.players || {});
+            const scores = gameState.scores || {};
+            
+            let maxScore = 0;
+            let winner = null;
+            
+            players.forEach(p => {
+                if ((scores[p.name] || 0) > maxScore) {
+                    maxScore = scores[p.name] || 0;
+                    winner = p;
+                }
+            });
+            
+            return winner;
+        }
+
+        // Reset game
+        function resetGame() {
+            if (confirm('Start a new dystopian adventure?')) {
+                const newCode = generateGameCode();
+                window.location.href = `?game=${newCode}`;
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>;
             position: absolute;
             top: -20px;
             right: -40px;
             font-family: 'Bebas Neue', cursive;
             font-size: 6em;
-            color: rgba(255, 0, 64, 0.05);
+            color: rgba(255, 140, 0, 0.05);
             transform: rotate(45deg);
             pointer-events: none;
         }
@@ -833,7 +2259,7 @@
         // CUSTOMIZE YOUR GAME LOCATIONS HERE!
         // ========================================
         const stops = [
-            { number: 1, domain: "Housing", location: "Regent Park Community Centre", challenge: "How can we make housing MORE unaffordable and exploitative?" },
+            { number: 1, domain: "Housing & Living", location: "Regent Park Community Centre", challenge: "How can we make housing MORE unaffordable and exploitative?" },
             { number: 2, domain: "Health & Wellness", location: "Toronto General Hospital", challenge: "How can we monetize people's health crises for maximum profit?" },
             { number: 3, domain: "Education", location: "Robarts Library (UofT)", challenge: "How can we gatekeep knowledge from the masses?" },
             { number: 4, domain: "Employment", location: "Bay Street Financial District", challenge: "How can we maximize worker exploitation?" },
@@ -851,7 +2277,7 @@
             {
                 name: "THE GREEDY DEVELOPER",
                 emoji: "💼",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/qoliproject_a_CORPORATE_ART_sellout_character_in_a_comic_--v__974a621b-b53f-421c-b80b-4e616bc4bb87_0.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Affordable housing? You mean 'future luxury condos'?",
                 powers: ["Turn parks into 'micro-unit' parking spots", "Rename slums as 'up-and-coming artist hubs'"],
                 weakness: "Tears when Zoning Bylaws are enforced"
@@ -859,7 +2285,7 @@
             {
                 name: "THE AUSTERITY MAYOR",
                 emoji: "🏛️",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_CORPORATE_ARTist_character_in_a_comic_--v_7_3afc2fb1-51d0-4bf0-9eea-b87c43131a2e_0.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Budget cuts build character!",
                 powers: ["Defund libraries, call it 'digital transformation'", "Replace public transit with 'partnered e-scooters'"],
                 weakness: "Can't explain where the police budget went"
@@ -867,7 +2293,7 @@
             {
                 name: "THE TECH BRO MESSIAH",
                 emoji: "👔",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_tech_bro_messiah_character_in_a_childrens_board_5c729a84-331a-416d-9e55-0838d64e5684_3.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Disrupt poverty with an app!",
                 powers: ["Pitch 'Uber Shelters™' (dynamic pricing for beds)", "Blockchain-ize food banks ('Tokenize hunger!')"],
                 weakness: "Melts when asked about profitability"
@@ -875,7 +2301,7 @@
             {
                 name: "THE POLICE BUDGET LOBBYIST",
                 emoji: "👮",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_police_budget_lobbyist_character_in_a_childrens_fe436c1f-656d-4b3b-a166-1db5655b8b86_1.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "More cops = safer streets (and dividends!).",
                 powers: ["Arm pigeons for 'public safety'", "Jail the homeless for 'trespassing in public space'"],
                 weakness: "Panics when defund movements trend"
@@ -883,7 +2309,7 @@
             {
                 name: "THE PAYDAY LOAN SHARK",
                 emoji: "🏦",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_payday_loan_character_in_a_childrens_comic_--v__21176f11-dc2e-4298-9ca1-fa7692e3e00b_0.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Your debt is my oxygen.",
                 powers: ["Open 'Crypto Pawn Shops' in food deserts", "Sell 'Financial Literacy Seminars' (at 300% APR)"],
                 weakness: "Flees when credit unions appear"
@@ -891,7 +2317,7 @@
             {
                 name: "THE CORPORATE ART WASHER",
                 emoji: "🎭",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_artist_that_sold_their_soul_to_a_corporation_in_2fab7e8d-05bc-4b37-b6fa-1baca2409c34_1.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Gentrification is a mural away!",
                 powers: ["Cover tent cities with 'community vibrancy murals'", "Sponsor 'edgy' galleries that evict tenants"],
                 weakness: "Exposed by a single 'Who funded this?' question"
@@ -899,7 +2325,7 @@
             {
                 name: "THE SLUMLORD CEO",
                 emoji: "🛠️",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_slumlord_CEO_character_in_a_comic_--v_7_1d557bdd-c159-4d15-b67e-d311d0536c1c_0.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Black mold builds immune systems!",
                 powers: ["List closets as 'cozy studio apartments'", "Blame 'renovictions' on 'heritage restoration'"],
                 weakness: "Actually has to live in one of their units"
@@ -907,7 +2333,7 @@
             {
                 name: "THE DISASTER CAPITALIST",
                 emoji: "🌐",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_capitalist_celebrating_a_disaster_because_he_wi_bf1b6673-a927-4311-9045-dd02debdf4bc_2.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Crises are just unmonetized opportunities!",
                 powers: ["Privatize water during heat waves", "Sell 'climate-proof bunkers' to NIMBYs"],
                 weakness: "Solar panels ruin their business model"
@@ -915,7 +2341,7 @@
             {
                 name: "THE GENTRIFICATION GURU",
                 emoji: "🏗️",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_THE_white_GENTRIFICATION_GURU_character_in_a_co_f00ab85f-7fd5-4547-900a-08a5b88624c0_2.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Displacement is just urban evolution!",
                 powers: ["Replace bodegas with 'artisanal mayo boutiques'", "Price out locals with 'cultural enhancement fees'"],
                 weakness: "Allergic to actual community input"
@@ -923,7 +2349,7 @@
             {
                 name: "THE WELLNESS GRIFTER",
                 emoji: "📊",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_THE_WELLNESS_GRIFTER_character_in_a_comic_--v_7_6a080882-4dba-4d5c-971e-2785ac736bc4_2.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Your trauma is my yoga retreat!",
                 powers: ["Sell 'Mindfulness Eviction Notices'", "Turn addiction centers into 'juice cleanse spas'"],
                 weakness: "Can't define what 'wellness' actually means"
@@ -931,7 +2357,7 @@
             {
                 name: "THE PARKING PROPHET",
                 emoji: "🚗",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_THE_PARKING_PROPHET_character_in_a_comic_--v_7_5bf3be9d-fe27-43c6-a9d0-255dffb9c72f_3.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Every sidewalk is a potential parking spot!",
                 powers: ["Convert bike lanes to 'premium valet zones'", "Charge pedestrians 'sidewalk subscription fees'"],
                 weakness: "Their own car gets towed constantly"
@@ -939,7 +2365,7 @@
             {
                 name: "THE SURVEILLANCE SULTAN",
                 emoji: "📱",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_THE_SURVEILLANCE_peeper_character_in_a_comic_--_a50482b3-f10d-4fd7-9fcf-343c3b8345aa_2.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Privacy is just uncollected data!",
                 powers: ["Install 'Safety Cameras' in public bathrooms", "Sell citizen data as 'community insights'"],
                 weakness: "Own data gets leaked immediately"
@@ -947,7 +2373,7 @@
             {
                 name: "THE EDUCATION PRIVATIZER",
                 emoji: "🎓",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_CORPORATE_ARTist_character_in_a_comic_--v_7_3afc2fb1-51d0-4bf0-9eea-b87c43131a2e_0.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Knowledge should have a price tag!",
                 powers: ["Turn libraries into 'premium learning lounges'", "Create 'Kindergarten Debt Programs'"],
                 weakness: "Can't spell without autocorrect"
@@ -955,7 +2381,7 @@
             {
                 name: "THE HEALTHCARE HUSTLER",
                 emoji: "🏥",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_HEALTHCARE_HUSTLER_character_in_a_comic_--v_7_43138e4e-9314-4026-85e5-4b93e7277b8d_0.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Sickness is a growth industry!",
                 powers: ["Install 'Pay-per-breath air quality stations'", "Franchise emergency rooms like 'McTrauma™'"],
                 weakness: "Faints at sight of actual blood"
@@ -963,7 +2389,7 @@
             {
                 name: "THE GREENWASH WIZARD",
                 emoji: "🌱",
-                image: "https://raw.githubusercontent.com/GonzoDevRando/qolizero/ef74399582155c591aa6bedcfbdbbcfe00aa2443/qoliproject_a_GREENWASH_WIZARD_character_in_a_comic_--v_7_bdaee389-6c7e-4027-875d-4bb6d5ee008f_2.png", // Add URL to character image here
+                image: "", // Add URL to character image here
                 motto: "Sustainability™ (terms and conditions apply)",
                 powers: ["Paint oil pipelines green, call them 'eco-tubes'", "Sell 'Carbon Offset NFTs' that do nothing"],
                 weakness: "Actual environmental data"
@@ -1191,7 +2617,24 @@
             } else if (gameState.phase === 'finished') {
                 const winner = getWinner(gameState);
                 gameArea.innerHTML = `
-                    <div class="winner">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <img src="https://raw.githubusercontent.com/GonzoDevRando/qolizero/main/dystopia-ending.jpg" 
+                             alt="The Corporate Overlords" 
+                             style="max-width: 100%; max-height: 400px; border-radius: 15px; 
+                                    border: 4px solid #ff8c00; 
+                                    box-shadow: 0 0 50px rgba(255, 140, 0, 0.5), 
+                                                0 0 100px rgba(138, 43, 226, 0.3);
+                                    margin-bottom: 20px;">
+                        <p style="font-family: 'Bebas Neue', cursive; 
+                                  font-size: 1.8em; 
+                                  color: #ff8c00; 
+                                  text-shadow: 2px 2px 0px #000, 0 0 20px rgba(255, 140, 0, 0.5);
+                                  letter-spacing: 2px;">
+                            THE CORPORATE OVERLORDS WELCOME THEIR NEWEST MEMBER...
+                        </p>
+                    </div>
+                    
+                    <div class="winner" style="color: #ff8c00; text-shadow: 3px 3px 0px #000, 0 0 40px rgba(255, 140, 0, 0.8);">
                         🏆 MOST EVIL VILLAIN 🏆
                         <br>
                         ${winner ? `${winner.name} as ${winner.character.name}` : 'No winner'}
@@ -1199,12 +2642,12 @@
                         SCORE: ${winner ? (gameState.scores[winner.name] || 0) : 0} EVIL POINTS!
                     </div>
                     
-                    <div class="scoreboard">
-                        <h3>FINAL EVIL RANKINGS:</h3>
+                    <div class="scoreboard" style="background: linear-gradient(135deg, rgba(10, 10, 21, 0.95), rgba(138, 43, 226, 0.1));">
+                        <h3 style="color: #ff8c00;">FINAL EVIL RANKINGS:</h3>
                         ${renderScores(gameState)}
                     </div>
 
-                    <button onclick="resetGame()" style="background: linear-gradient(135deg, #ff0040, #ffff00);">START NEW DYSTOPIA</button>
+                    <button onclick="resetGame()" style="background: linear-gradient(135deg, #ff8c00, #8a2be2);">START NEW DYSTOPIA</button>
                 `;
             }
         }
